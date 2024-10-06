@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradient Color Maker</title>
+  </head>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      background-image: linear-gradient(to right, #474242, #111111);
+      color: white;
+    }
+    h1 {
+      font-size: 40px;
+      font-style: oblique;
+      color: lightsalmon;
+      margin: 70px 0px 70px 0px;
+      animation: h1 5s linear infinite;
+    }
+    @keyframes h1 {
+      0% {
+        color: lightsalmon;
+      }
+      50% {
+        color: lightpink;
+      }
+      75% {
+        color: lightgoldenrodyellow;
+      }
+      100% {
+        color: lightsalmon;
+      }
+    }
+
+    .main {
+      width: 50%;
+      margin: 5% 25%;
+      padding: 20px 0px;
+      border-radius: 10px;
+      border: 2px solid lightsalmon;
+    }
+
+    #btn1,
+    #btn2 {
+      height: 50px;
+      background: transparent;
+      color: lightsalmon;
+      border: 3px solid lightsalmon;
+      border-radius: 20px;
+      transition: 1s linear;
+      font-weight: 300;
+      margin: 10px 10px;
+    }
+
+    #btn1:hover {
+      background: lightsalmon;
+      color: black;
+      border: 3px solid black;
+    }
+
+    #btn2:hover {
+      background: lightsalmon;
+      color: black;
+      border: 3px solid black;
+    }
+
+    .copy {
+      width: 80%;
+      margin: 0px 10%;
+      padding: 30px 5px;
+      background: rgba(255, 255, 255, 0.08);
+      border-left: 2px solid rgb(255, 255, 255);
+      border-radius: 20px;
+    }
+  </style>
+
+  <body align="center">
+    <h1>Color Changing Background</h1>
+    <section class="main">
+      <div>
+        <button id="btn1">Change Left Side Color</button>
+        <button id="btn2">Change Left Right Color</button>
+      </div>
+      <h3>Copy Code Here...</h3>
+      <div class="copy">
+        background-image: linear-gradient(to right,#474242,#111111)
+      </div>
+    </section>
+
+    <script>
+      let btn1 = document.getElementById("btn1");
+      let btn2 = document.getElementById("btn2");
+      let copydiv = document.querySelector(".copy");
+      let rgb1 = "#474242";
+      let rgb2 = "#111111";
+      const hexvalues = () => {
+        let haxval = "0123456789abcdef";
+        let colors = "#";
+        for (let i = 0; i < 6; i++) {
+          colors = colors + haxval[Math.floor(Math.random() * 16)];
+        }
+        return colors;
+      };
+      const handlebtn1 = () => {
+        rgb1 = hexvalues();
+        document.body.style.backgroundImage = `linear-gradient(to right,${rgb1},${rgb2})`;
+        // btn1.innerHTML = rgb1;
+        copydiv.innerHTML = `background-image: linear-gradient(to right,${rgb1},${rgb2})`;
+        // btn1.style.background = `${rgb1}`;
+      };
+      const handlebtn2 = () => {
+        rgb2 = hexvalues();
+        document.body.style.backgroundImage = `linear-gradient(to right,${rgb1},${rgb2})`;
+        // btn2.innerHTML = rgb2;
+        copydiv.innerHTML = `background-image: linear-gradient(to right,${rgb1},${rgb2})`;
+        // btn2.style.background = `${rgb2}`;
+      };
+
+      btn1.addEventListener("click", handlebtn1);
+      btn2.addEventListener("click", handlebtn2);
+      copydiv.addEventListener("click", () => {
+        navigator.clipboard.writeText(copydiv.innerHTML);
+        alert("Text Copied");
+      });
+    </script>
+  </body>
+</html>
